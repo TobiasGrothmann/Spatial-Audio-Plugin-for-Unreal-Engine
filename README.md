@@ -42,9 +42,10 @@ open the xcode workspace and hit `cmd + r` to compile and run.
 
 # Requirements
 
-* tested for **UE_4.25** on **MacOS** and **Windows**
-* audio device that supports **lots of speakers**
-* you need to have the **coordinates for all of your speakers**, you can either enter them manually or load them as a .csv file directly from the Spatial Audio Manager
+* **UE_4.25** on **MacOS** or **Windows**
+* **audio device** that supports lots of speakers
+* **lots of speakers**, well you really don't need a lot lot; a couple are enough, but you need to place them in a three-dimensional layout.
+* **coordinates for all of your speakers**, you can either enter them manually or load them as a .csv file directly from the Spatial Audio Manager
 
 # Usage
 
@@ -53,6 +54,8 @@ To open up the `Spatial Audio Setup`-tab click the icon in the toolbar:
 <img src="https://user-images.githubusercontent.com/28928394/112381930-7864b080-8ceb-11eb-9a59-b9f089e2791c.png" alt="Button to open the Spatial Audio Setup window" style="width:80px"/>
 <img src="https://user-images.githubusercontent.com/28928394/112382571-4e5fbe00-8cec-11eb-9893-f39506158214.png" alt="the Spatial Audio Setup window"/>
 </div>
+
+
 Make sure that the **Spatial Audio Spatializer is used as the spatializer plugin** in the project settings for your platform. Also make sure that there is **exactly one SpatialAudioManager** in the persistent level.
 
 To spatialize sounds using VBAP, the checkbox ***spatialized* has to be checked** for the actor and the checkbox ***Endpoint* has to be checked** for the used sound asset. This makes sure that spatialization is used and set to "binaural" (not really the case, but UE uses this term to show that a spatializer plugin is used). It also makes sure that the audio asset is routed to the *SASoundfieldEndpoint* (Located in "*SpatialAudio Content* -> *Sound* -> *SASoundfieldEndpoint*"; select *ViewOptions* -> *Show Plugin Content*" first).
