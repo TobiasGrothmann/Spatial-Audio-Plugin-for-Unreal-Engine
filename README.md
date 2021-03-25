@@ -72,7 +72,9 @@ If anything doesn't work, **check the Console** or feel free to ask. Remember, t
 
 Select **Show Debug Speaker** and **Show Debug Speaker Amp** from the Spatial Audio Manager's details panel. This will spawn a speaker actor for every speaker you have setup. If you start a play session, the size of the speaker will visualize the currently used VBAP gain coeffient.
 
-# Example Project
+Make sure you selected the **selected the correct audio device** in the SpatialAudioManager.
+
+# Example Project – Boids 3D Sound
 
 To get started, try the example project which uses the Boids flocking algorithm to spatialize sounds around the listener.
 
