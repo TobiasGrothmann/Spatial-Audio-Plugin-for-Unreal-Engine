@@ -1,0 +1,10 @@
+
+.DS_Store
+
+.xcodeworkspace/
+.sln
+
+Saved/
+Binaries/
+Intermediate/
+.vs/
