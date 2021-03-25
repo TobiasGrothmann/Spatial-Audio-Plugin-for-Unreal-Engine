@@ -51,6 +51,8 @@ open the xcode workspace and hit `cmd + r` to compile and run.
 
 # Usage
 
+[![Image that links to a setup video](https://user-images.githubusercontent.com/28928394/112539588-75cc8e80-8db1-11eb-9e28-93b5bf1c2b39.png)](https://youtu.be/AEfmpIzblfE)
+
 To open up the `Spatial Audio Setup`-tab click the icon in the toolbar:
 
 <img src="https://user-images.githubusercontent.com/28928394/112381930-7864b080-8ceb-11eb-9a59-b9f089e2791c.png" alt="Button to open the Spatial Audio Setup window" width="120px"/>
