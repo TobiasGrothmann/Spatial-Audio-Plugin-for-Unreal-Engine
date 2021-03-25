@@ -1,8 +1,8 @@
 
 .DS_Store
 
-.xcodeworkspace/
-.sln
+*.xcworkspace
+*.sln
 
 Saved/
 Binaries/
