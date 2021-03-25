@@ -29,9 +29,7 @@ The plugin is installed like any other UE plugin. Copy the folder `SpatialAudio`
 ## Option 1: Start project
 Open the project and let *Unreal Engine* compile:
 
-<div style="text-align:center">
-<img src="https://user-images.githubusercontent.com/28928394/112468057-1d24d380-8d68-11eb-98a1-75f3581a558f.png" alt="unreal engine asks to compile project" style="width:400px"/>
-</div>
+<img src="https://user-images.githubusercontent.com/28928394/112468057-1d24d380-8d68-11eb-98a1-75f3581a558f.png" alt="unreal engine asks to compile project" width="550px"/>
 
 ## Option 2: Generate the project files and compile from editor
 #### Windows
@@ -54,10 +52,9 @@ open the xcode workspace and hit `cmd + r` to compile and run.
 # Usage
 
 To open up the `Spatial Audio Setup`-tab click the icon in the toolbar:
-<div style="text-align:center">
-<img src="https://user-images.githubusercontent.com/28928394/112381930-7864b080-8ceb-11eb-9a59-b9f089e2791c.png" alt="Button to open the Spatial Audio Setup window" style="width:80px"/>
+
+<img src="https://user-images.githubusercontent.com/28928394/112381930-7864b080-8ceb-11eb-9a59-b9f089e2791c.png" alt="Button to open the Spatial Audio Setup window" width="120px"/>
 <img src="https://user-images.githubusercontent.com/28928394/112382571-4e5fbe00-8cec-11eb-9893-f39506158214.png" alt="the Spatial Audio Setup window"/>
-</div>
 
 
 Make sure that the **Spatial Audio Spatializer is used as the spatializer plugin** in the project settings for your platform. Also make sure that there is **exactly one SpatialAudioManager** in the persistent level.
@@ -65,9 +62,8 @@ Make sure that the **Spatial Audio Spatializer is used as the spatializer plugin
 To spatialize sounds using VBAP, the checkbox ***spatialized* has to be checked** for the actor and the checkbox ***Endpoint* has to be checked** for the used sound asset. This makes sure that spatialization is used and set to "binaural" (not really the case, but UE uses this term to show that a spatializer plugin is used). It also makes sure that the audio asset is routed to the *SASoundfieldEndpoint* (Located in "*SpatialAudio Content* -> *Sound* -> *SASoundfieldEndpoint*"; select *ViewOptions* -> *Show Plugin Content*" first).
 
 Select the SpatialAudioManager in the scene and change the settings in its details panel. **Select the right Audio Output Device**. As you can see, I am using Loopback Audio, because the output device needs to support as many speakers as you have set up in your speaker layout in the *Speaker Positions* array:
-<div style="text-align:center">
-<img src="https://user-images.githubusercontent.com/28928394/112383285-376d9b80-8ced-11eb-9fcb-d9a6a94e7df7.png" alt="Spatial Audio Manager details panel" style="width:500px"/>
-</div>
+
+<img src="https://user-images.githubusercontent.com/28928394/112383285-376d9b80-8ced-11eb-9fcb-d9a6a94e7df7.png" alt="Spatial Audio Manager details panel" width="500px"/>
 
 
 ## Debugging
@@ -82,7 +78,5 @@ Make sure you selected the **selected the correct audio device** in the SpatialA
 
 To get started, try the example project which uses the Boids flocking algorithm to spatialize sounds around the listener.
 
-<div style="text-align:center">
 <img src="https://user-images.githubusercontent.com/28928394/112385080-78ff4600-8cef-11eb-8992-61248dd8d0f7.png" alt="Screenshot of the example project using the boids algorithm"/>
-</div>
 
