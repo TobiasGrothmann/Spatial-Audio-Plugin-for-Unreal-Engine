@@ -25,31 +25,6 @@ void FSpatialAudioManagerDetails::CustomizeDetails(IDetailLayoutBuilder& DetailB
 {
     IDetailCategoryBuilder& DeviceCategory = DetailBuilder.EditCategory(TEXT("Audio Output Device"));
     
-    OutputDeviceOptions.Empty();
-    for (const FString& Name : ASpatialAudioManager::GetOutputDeviceNames())
-    {
-        OutputDeviceOptions.Add(MakeShareable(new FString(Name)));
-    }
-    OutputDeviceOptions.Add(MakeShareable(new FString(DefaultAudioDeviceString)));
-    
-    
-    FText AudioOutputDevice = LOCTEXT("AudioHardwareChoice", "Audio Output Device");
-    DeviceCategory.AddCustomRow(AudioOutputDevice)
-    .WholeRowContent()
-    [
-        SNew(SComboBox<TSharedPtr<FString>>)
-        .ToolTipText(LOCTEXT("PreferredRendererToolTip", "Choose the preferred output device."))
-        .OptionsSource(&OutputDeviceOptions)
-        .OnSelectionChanged(this, &FSpatialAudioManagerDetails::OnAudioDeviceSelectionChanged)
-        .OnGenerateWidget(this, &FSpatialAudioManagerDetails::OnGenerateAudioDeviceRow)
-        .Content()
-        [
-            SNew(STextBlock)
-            .Text(this, &FSpatialAudioManagerDetails::GetAudioOutputDeviceText)
-        ]
-    ];
-    
-    
     IDetailCategoryBuilder& LoadCategory = DetailBuilder.EditCategory(TEXT("Load speaker-setups"));
     
     FText IosonoLoad = LOCTEXT("IosonoLoadButton", "load Iosono .xml");
@@ -149,34 +124,5 @@ bool FSpatialAudioManagerDetails::OpenFileDialog(const FString& FileTypes, FStri
     return bOpened;
 }
 
-
-FText FSpatialAudioManagerDetails::GetAudioOutputDeviceText() const
-{
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
-    if (!IsValid(SAManager)) return FText::FromString("------");
-    if (SAManager->AudioOutputDeviceName == "") return FText::FromString(DefaultAudioDeviceString);
-    return FText::FromString(SAManager->AudioOutputDeviceName);
-}
-
-TSharedRef<SWidget> FSpatialAudioManagerDetails::OnGenerateAudioDeviceRow(TSharedPtr<FString> InItem)
-{
-    return SNew(STextBlock).Text(FText::FromString(*InItem));
-}
-
-void FSpatialAudioManagerDetails::OnAudioDeviceSelectionChanged(TSharedPtr<FString> InItem, ESelectInfo::Type InSeletionInfo)
-{
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
-    if (IsValid(SAManager))
-    {
-        if (*InItem == DefaultAudioDeviceString)
-        {
-            SAManager->AudioOutputDeviceName = "";
-        }
-        else
-        {
-            SAManager->AudioOutputDeviceName = *InItem;
-        }
-    }
-}
 
 #undef LOCTEXT_NAMESPACE

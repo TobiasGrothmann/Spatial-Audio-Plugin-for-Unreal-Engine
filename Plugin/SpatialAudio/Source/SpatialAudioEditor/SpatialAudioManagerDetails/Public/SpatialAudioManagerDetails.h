@@ -23,13 +23,4 @@ private:
     void SetSpeakerPositions(const TArray<FSpeakerPosition>& ParsedPositions);
     
     bool OpenFileDialog(const FString& FileTypes, FString& OutPath);
-    
-    
-    FText GetAudioOutputDeviceText() const;
-    TSharedRef<SWidget> OnGenerateAudioDeviceRow(TSharedPtr<FString> InItem);
-    void OnAudioDeviceSelectionChanged(TSharedPtr<FString> InItem, ESelectInfo::Type InSeletionInfo);
-    
-    TArray<TSharedPtr<FString>> OutputDeviceOptions = {};
-    
-    const FString DefaultAudioDeviceString = "-- default --";
 };
