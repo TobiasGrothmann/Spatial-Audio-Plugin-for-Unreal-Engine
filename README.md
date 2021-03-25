@@ -17,7 +17,7 @@ This plugin implements a **Spatializer** that is used to attach spatial informat
 Well, you probably don't... But maybe you have a lot of speakers laying around and you want to spatialize your awesome sounds using all of them.
 
 
-# Setup your own project
+# Install the plugin in a custom project
 
 Clone the repository *(or download as a `.zip` file.)*
 ```bash
