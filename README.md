@@ -27,7 +27,11 @@ git clone https://github.com/TobiasGrothmann/Spatial-Audio-Plugin-for-Unreal-Eng
 The plugin is installed like any other UE plugin. Copy the folder `SpatialAudio` into your project's `Plugins` directory. *(If it does not exist, create a folder called **Plugins** next to your **.uproject** file.)*
 
 ## Option 1: Start project
-Open the project and let *Unreal Engine* compile.
+Open the project and let *Unreal Engine* compile:
+
+<div style="text-align:center">
+<img src="https://user-images.githubusercontent.com/28928394/112468057-1d24d380-8d68-11eb-98a1-75f3581a558f.png" alt="unreal engine asks to compile project" style="width:400px"/>
+</div>
 
 ## Option 2: Generate the project files and compile from editor
 #### Windows
