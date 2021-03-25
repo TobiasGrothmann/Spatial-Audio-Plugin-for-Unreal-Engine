@@ -2,7 +2,7 @@
 
 ## What?
 
-This plugin adds *Vector Base Amplitude Panning* (HRTF) to *Unreal Engine*. It's intended as a proof of concept and a lot of work can still be done. Because UE restricts the number of speakers, and soundfield submixes are also generally designed to be used with ambisoncis or HRTF, there are a couple of hacks that needed to be employed to get this to work.
+This plugin adds *Vector Base Amplitude Panning* (VBAP) to *Unreal Engine*. It's intended as a proof of concept and a lot of work can still be done. Because UE restricts the number of speakers, and soundfield submixes are also generally designed to be used with ambisoncis or HRTF, there are a couple of hacks that needed to be employed to get this to work.
 
 ## Why?
 
