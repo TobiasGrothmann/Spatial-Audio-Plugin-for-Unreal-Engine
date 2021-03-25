@@ -36,7 +36,7 @@ Open the project and let *Unreal Engine* compile:
 Right-click the `.uproject` and select **generate project files**. This will create the Visual Studio project file. Open the Visual Studio (2019) project and select `Build > Rebuild Solution`. Afterwards, you can either start with a debugger attached by hitting `F5` or just close VS open the `.uproj` file.
 
 #### MacOS
-Create the .xcworkspace by running:
+Create the `.xcworkspace` by running:
 ```bash
 <path/to/engine>Engine/Build/BatchFiles/Mac/GenerateProjectFiles.sh -projectfiles -project=<path/to/project> -game -engine
 ```
