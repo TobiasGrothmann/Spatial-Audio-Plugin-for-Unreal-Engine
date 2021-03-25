@@ -31,6 +31,8 @@ void SSpatialAudioSetupTab::Construct(const FArguments& InArgs)
     static TSoftClassPtr<USoundfieldEndpointSubmix> SAEndpoint = TSoftClassPtr<USoundfieldEndpointSubmix>(FSoftObjectPath(TEXT("SoundfieldEndpointSubmix'/SpatialAudio/Sound/SASoundfieldEndpoint.SASoundfieldEndpoint'")));
     SAEndpoint.LoadSynchronous();
     
+    OutputDeviceOptions = GetOutputDeviceOptions();
+    
     ChildSlot
     .VAlign(VAlign_Fill)
     .HAlign(HAlign_Fill)
@@ -48,47 +50,104 @@ void SSpatialAudioSetupTab::Construct(const FArguments& InArgs)
                 .Padding(5)
                 .AutoWidth()
                 [
-                    SNew(SButton)
-                    .HAlign(HAlign_Center)
-                    .OnClicked(this, &SSpatialAudioSetupTab::Refresh)
+                    SNew(SVerticalBox)
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
                     [
-                        SNew(STextBlock)
-                        .Text(LOCTEXT("refresh", "↻")) // refresh ↻
-                        .Font(FCoreStyle::GetDefaultFontStyle("Regular", 16))
+                        SNew(SButton)
+                        .HAlign(HAlign_Center)
+                        .OnClicked(this, &SSpatialAudioSetupTab::Refresh)
+                        [
+                            SNew(STextBlock)
+                            .Text(LOCTEXT("refresh", "↻"))
+                            .Font(FCoreStyle::GetDefaultFontStyle("Regular", 16))
+                        ]
+                    ]
+                    + SVerticalBox::Slot()
+                    [ SNew(SSpacer) ]
+                ]
+                + SHorizontalBox::Slot()
+                .Padding(25, 5, 5, 5)
+                .AutoWidth()
+                [
+                    SNew(SVerticalBox)
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    [
+                        SNew(SHorizontalBox)
+                        + SHorizontalBox::Slot()
+                        .Padding(5)
+                        .HAlign(HAlign_Left)
+                        .AutoWidth()
+                        [
+                            SNew(STextBlock)
+                            .Text(FText::FromString(FString::Printf(TEXT("Spatializer is '%s' (project settings):"), *FInfoEncodingSpatializerPluginFactory::GetSpatializerPluginName())))
+                        ]
+                        + SHorizontalBox::Slot()
+                        .HAlign(HAlign_Left)
+                        .Padding(5)
+                        .AutoWidth()
+                        [
+                            SAssignNew(SSpatPluginCheckBox, SCheckBox)
+                            .IsChecked(EditorUtil::IsInfoEncodingSpatializerTheCurrentSpatPlugin())
+                            .OnCheckStateChanged(this, &SSpatialAudioSetupTab::OnSpatPluginSetChanged)
+                            .IsEnabled(false)
+                        ]
+                        + SHorizontalBox::Slot()
+                        [ SNew(SSpacer) ]
+                    ]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    [
+                        SNew(SHorizontalBox)
+                        + SHorizontalBox::Slot()
+                        .Padding(5)
+                        .AutoWidth()
+                        [
+                            SNew(STextBlock)
+                            .Text(FText::FromString("There is exactly one SpatialAudioManager in the persistent level:"))
+                        ]
+                        + SHorizontalBox::Slot()
+                        .AutoWidth()
+                        .Padding(5)
+                        [
+                            SAssignNew(SAManagerCheckbox, SCheckBox)
+                            .IsChecked(EditorUtil::IsExactlyOneSAManagerInWorld())
+                            .OnCheckStateChanged(this, &SSpatialAudioSetupTab::OnSAManagerSetChanged)
+                        ]
+                        + SHorizontalBox::Slot()
+                        [ SNew(SSpacer) ]
+                    ]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    [
+                        SNew(SHorizontalBox)
+                        + SHorizontalBox::Slot()
+                        .AutoWidth()
+                        .Padding(5,7,5,5)
+                        [
+                            SNew(STextBlock)
+                            .Text(FText::FromString("Audio device:"))
+                        ]
+                        + SHorizontalBox::Slot()
+                        .Padding(5)
+                        .AutoWidth()
+                        [
+                            SNew(SComboBox<TSharedPtr<FString>>)
+                            .ToolTipText(LOCTEXT("PreferredRendererToolTip", "Choose the preferred output device."))
+                            .OptionsSource(&OutputDeviceOptions)
+                            .OnSelectionChanged(this, &SSpatialAudioSetupTab::OnAudioDeviceSelectionChanged)
+                            .OnGenerateWidget(this, &SSpatialAudioSetupTab::OnGenerateAudioDeviceRow)
+                            .Content()
+                            [
+                                SNew(STextBlock)
+                                .Text(this, &SSpatialAudioSetupTab::GetAudioOutputDeviceText)
+                            ]
+                        ]
+                        + SHorizontalBox::Slot()
+                        [ SNew(SSpacer) ]
                     ]
                 ]
-                + SHorizontalBox::Slot()
-                .Padding(70, 15, 5, 5)
-                .AutoWidth()
-                [
-                    SNew(STextBlock)
-                    .Text(FText::FromString(FString::Printf(TEXT("Spatializer is '%s' (project settings):"), *FInfoEncodingSpatializerPluginFactory::GetSpatializerPluginName())))
-                ]
-                + SHorizontalBox::Slot()
-                .Padding(5)
-                .AutoWidth()
-                [
-                    SAssignNew(SSpatPluginCheckBox, SCheckBox)
-                    .IsChecked(EditorUtil::IsInfoEncodingSpatializerTheCurrentSpatPlugin())
-                    .OnCheckStateChanged(this, &SSpatialAudioSetupTab::OnSpatPluginSetChanged)
-                    .IsEnabled(false)
-                ]
-                + SHorizontalBox::Slot()
-                .Padding(25, 15, 5, 5)
-                .AutoWidth()
-                [
-                    SNew(STextBlock)
-                    .Text(FText::FromString("There is exactly one SpatialAudioManager in the persistent level:"))
-                ]
-                + SHorizontalBox::Slot()
-                .Padding(5)
-                .AutoWidth()
-                [
-                    SAssignNew(SAManagerCheckbox, SCheckBox)
-                    .IsChecked(EditorUtil::IsExactlyOneSAManagerInWorld())
-                    .OnCheckStateChanged(this, &SSpatialAudioSetupTab::OnSAManagerSetChanged)
-                ]
-                + SHorizontalBox::Slot() [ SNew(SSpacer) ]
             ]
             // LIST VIEWS
             + SVerticalBox::Slot()
@@ -353,10 +412,10 @@ FReply SSpatialAudioSetupTab::Refresh()
     SSpatPluginCheckBox->SetIsChecked(EditorUtil::IsInfoEncodingSpatializerTheCurrentSpatPlugin() ? ECheckBoxState::Checked : ECheckBoxState::Unchecked);
     SAManagerCheckbox->SetIsChecked(EditorUtil::IsExactlyOneSAManagerInWorld() ? ECheckBoxState::Checked : ECheckBoxState::Unchecked);
     
+    OutputDeviceOptions = GetOutputDeviceOptions();
+    
     return FReply::Handled();
 }
-
-
 
 
 
@@ -368,6 +427,48 @@ TSharedPtr<FSoundAssetInfo> SSpatialAudioSetupTab::GetSoundAssetForAudioComponen
         
     }
     return nullptr;
+}
+
+
+
+TArray<TSharedPtr<FString>> SSpatialAudioSetupTab::GetOutputDeviceOptions()
+{
+    TArray<TSharedPtr<FString>> Options = {};
+    for (const FString& Name : ASpatialAudioManager::GetOutputDeviceNames())
+    {
+        Options.Add(MakeShareable(new FString(Name)));
+    }
+    Options.Add(MakeShareable(new FString(DefaultAudioDeviceString)));
+    return Options;
+}
+
+FText SSpatialAudioSetupTab::GetAudioOutputDeviceText() const
+{
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    if (!IsValid(SAManager)) return FText::FromString("------");
+    if (SAManager->AudioOutputDeviceName == "") return FText::FromString(DefaultAudioDeviceString);
+    return FText::FromString(SAManager->AudioOutputDeviceName);
+}
+
+TSharedRef<SWidget> SSpatialAudioSetupTab::OnGenerateAudioDeviceRow(TSharedPtr<FString> InItem)
+{
+    return SNew(STextBlock).Text(FText::FromString(*InItem));
+}
+
+void SSpatialAudioSetupTab::OnAudioDeviceSelectionChanged(TSharedPtr<FString> InItem, ESelectInfo::Type InSeletionInfo)
+{
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    if (IsValid(SAManager))
+    {
+        if (*InItem == DefaultAudioDeviceString)
+        {
+            SAManager->AudioOutputDeviceName = "";
+        }
+        else
+        {
+            SAManager->AudioOutputDeviceName = *InItem;
+        }
+    }
 }
 
 

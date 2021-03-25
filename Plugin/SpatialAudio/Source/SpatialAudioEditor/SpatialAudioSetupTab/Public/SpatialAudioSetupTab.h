@@ -40,7 +40,7 @@ public:
     void SoundAssetSelectionChanged(TSharedPtr<FSoundAssetInfo> ItemChangingState, ESelectInfo::Type SelectInfo);
     
     
-    
+    // refresh
     FReply Refresh();
     
     void UpdateAudioComponents();
@@ -50,4 +50,14 @@ public:
     
     
     TSharedPtr<FSoundAssetInfo> GetSoundAssetForAudioComponent(const TSharedPtr<FAudioComponentInfo>& ComponentInfo) const;
+    
+    
+    // output device
+    FText GetAudioOutputDeviceText() const;
+    TSharedRef<SWidget> OnGenerateAudioDeviceRow(TSharedPtr<FString> InItem);
+    void OnAudioDeviceSelectionChanged(TSharedPtr<FString> InItem, ESelectInfo::Type InSeletionInfo);
+
+    TArray<TSharedPtr<FString>> GetOutputDeviceOptions();
+    TArray<TSharedPtr<FString>> OutputDeviceOptions = {};
+    const FString DefaultAudioDeviceString = "-- default --";
 };
