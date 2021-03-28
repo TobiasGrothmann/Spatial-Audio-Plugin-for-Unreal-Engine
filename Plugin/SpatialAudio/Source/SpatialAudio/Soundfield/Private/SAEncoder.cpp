@@ -99,8 +99,6 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
     float* LastGains = new float[NumSpeakers];
     FSpatialAudioModule::Vbap->Perform(LastAzi, LastEle, LastGains);
     
-    // TODO: fix the fact that we are performing the vbap calculations twice
-    
     TMap<int32, FInterpolatedGain> GainsMap = {};
     for (int32 c = 0; c < NumSpeakers; c++)
     {
