@@ -5,7 +5,7 @@
 
 void FSpatialAudioCommands::RegisterCommands()
 {
-	UI_COMMAND(OpenPluginWindow, "SpatialAudio", "Bring up SpatialAudio window", EUserInterfaceActionType::Button, FInputGesture());
+	UI_COMMAND(OpenPluginWindow, "SpatialAudio", "Bring up SpatialAudio window", EUserInterfaceActionType::Button, FInputChord());
 }
 
 #undef LOCTEXT_NAMESPACE
