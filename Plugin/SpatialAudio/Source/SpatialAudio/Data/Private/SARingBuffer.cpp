@@ -52,7 +52,7 @@ void FSAringBuffer::Write(const FSAPacket& InPacket)
         }
         if (!IncrementWriteIndex())
         {
-            UE_LOG(LogSpatialAudio, Warning, TEXT("Failed to write to Buffer. Buffer is Full"));
+            UE_LOG(LogSpatialAudio, Warning, TEXT("Failed to write to RingBuffer - Buffer is full"));
             return;
         }
     }
@@ -78,7 +78,7 @@ void FSAringBuffer::Read(float* Out, int32 ReadBufferFrames, int32 NumOutChannel
     {
         if (!IncrementReadIndex())
         {
-            UE_LOG(LogSpatialAudio, Warning, TEXT("RingBuffer failed to read. Buffer is empty."));
+            UE_LOG(LogSpatialAudio, Warning, TEXT("Failed to read from RingBuffer - Buffer is empty."));
             break;
         }
         
