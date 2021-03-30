@@ -27,7 +27,7 @@ git clone https://github.com/TobiasGrothmann/Spatial-Audio-Plugin-for-Unreal-Eng
 The plugin is installed like any other UE plugin. Copy the folder `SpatialAudio` into your project's `Plugins` directory. *(If it does not exist, create a folder called **Plugins** next to your **.uproject** file.)*
 
 ## Option 1: Start project
-Open the project and let *Unreal Engine* compile:
+Open the `.upoject` file and *Unreal Engine* will ask you to let it compile:
 
 <img src="https://user-images.githubusercontent.com/28928394/112468057-1d24d380-8d68-11eb-98a1-75f3581a558f.png" alt="unreal engine asks to compile project" width="550px"/>
 
@@ -49,6 +49,10 @@ open the xcode workspace and hit `cmd + r` to compile and run.
 * **lots of speakers**, well you really don't need a lot lot; a couple are enough, but you need to place them in a three-dimensional layout.
 * **coordinates for all of your speakers**, you can either enter them manually or load them as a .csv file directly from the Spatial Audio Manager
 
+# Known Issues
+
+* RtAudio in UE (which is used to output sound) only supports the *Direct Audio* API on **windows**. This means that it might not detect the number of channels correctly.
+
 # Usage
 
 [![Image that links to a setup video](https://user-images.githubusercontent.com/28928394/112539588-75cc8e80-8db1-11eb-9e28-93b5bf1c2b39.png)](https://youtu.be/AEfmpIzblfE)
@@ -56,7 +60,7 @@ open the xcode workspace and hit `cmd + r` to compile and run.
 To open up the `Spatial Audio Setup`-tab click the icon in the toolbar:
 
 <img src="https://user-images.githubusercontent.com/28928394/112381930-7864b080-8ceb-11eb-9a59-b9f089e2791c.png" alt="Button to open the Spatial Audio Setup window" width="120px"/>
-<img src="https://user-images.githubusercontent.com/28928394/112382571-4e5fbe00-8cec-11eb-9893-f39506158214.png" alt="the Spatial Audio Setup window"/>
+<img src="https://user-images.githubusercontent.com/28928394/112986926-6b6c1500-9162-11eb-959e-88d8bf865293.png" alt="the Spatial Audio Setup window"/>
 
 
 Make sure that the **Spatial Audio Spatializer is used as the spatializer plugin** in the project settings for your platform. Also make sure that there is **exactly one SpatialAudioManager** in the persistent level.
@@ -65,7 +69,7 @@ To spatialize sounds using VBAP, the checkbox ***spatialized* has to be checked*
 
 Select the SpatialAudioManager in the scene and change the settings in its details panel. **Select the right Audio Output Device**. As you can see, I am using Loopback Audio, because the output device needs to support as many speakers as you have set up in your speaker layout in the *Speaker Positions* array:
 
-<img src="https://user-images.githubusercontent.com/28928394/112383285-376d9b80-8ced-11eb-9fcb-d9a6a94e7df7.png" alt="Spatial Audio Manager details panel" width="500px"/>
+<img src="https://user-images.githubusercontent.com/28928394/112977818-cc8deb80-9156-11eb-9be3-01f6868306cf.png" alt="Spatial Audio Manager details panel" width="500px"/>
 
 
 ## Debugging
