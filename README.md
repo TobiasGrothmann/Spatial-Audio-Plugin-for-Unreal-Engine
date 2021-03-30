@@ -74,11 +74,11 @@ Select the SpatialAudioManager in the scene and change the settings in its detai
 
 ## Debugging
 
-If anything doesn't work, **check the Console** or feel free to ask. Remember, this is just a proof of concept.
+If anything doesn't work **check the OutputLog** (Window -> DeveloperTools -> Output Log) and feel free to ask. Remember, this is just a proof of concept.
 
 Select **Show Debug Speaker** and **Show Debug Speaker Amp** from the Spatial Audio Manager's details panel. This will spawn a speaker actor for every speaker you have setup. If you start a play session, the size of the speaker will visualize the currently used VBAP gain coeffient.
 
-Make sure you selected the **selected the correct audio device** in the SpatialAudioManager.
+Make sure you **selected the correct audio device** in the SpatialAudioManager.
 
 # Example Project – Boids 3D Sound
 
