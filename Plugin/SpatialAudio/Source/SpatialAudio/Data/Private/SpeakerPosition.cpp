@@ -21,10 +21,11 @@ FSpeakerPosition FSpeakerPosition::FromCartesian(float X, float Y, float Z)
     NewPos.Distance = Location.Size();
     return NewPos;
 }
-    
-    
+
 FVector FSpeakerPosition::GetAsVector(const FRotator& AddRotation) const
 {
     // distance is not used for Vbap atm
-    return (AddRotation + FRotator(Elevation, Azimuth, 0.0f)).Vector();
+    FVector Dir = FRotator(Azimuth, Elevation, 0.0f).Vector();
+    FQuat Rot = FQuat(AddRotation);
+    return Rot.RotateVector(Dir);
 }
