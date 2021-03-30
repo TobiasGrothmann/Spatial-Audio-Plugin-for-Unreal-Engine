@@ -42,7 +42,7 @@ void ASpatialAudioManager::BeginPlay()
     
     if (!GetLevel()->IsPersistentLevel())
     {
-        UE_LOG(LogSpatialAudio, Error, TEXT("Setup failed: SpatialAudioManager must be in persistent level!"));
+        Util::CreateFailNotification(FString(TEXT("Setup")), FString(TEXT("SpatialAudioManager not in persistent level")));
         return;
     }
     
@@ -50,7 +50,8 @@ void ASpatialAudioManager::BeginPlay()
     FString ErrorMsg = {};
     if (!SetupVbap(ErrorMsg))
     {
-        UE_LOG(LogSpatialAudio, Warning, TEXT("Errors during VBAP setup calculation with %i speakers: %s"), SpeakerPositions.Num(), *ErrorMsg);
+        UE_LOG(LogSpatialAudio, Log, TEXT("number of speakers: %i"), SpeakerPositions.Num());
+        Util::CreateFailNotification(FString(TEXT("VBAP setup")), ErrorMsg);
     }
 
     
@@ -65,7 +66,7 @@ void ASpatialAudioManager::BeginPlay()
     ErrorMsg = {};
     if (!InitStream(ErrorMsg))
     {
-        UE_LOG(LogSpatialAudio, Error, TEXT("Error initializing rtAudio stream: %s"), *ErrorMsg);
+        Util::CreateFailNotification(FString(TEXT("RtAudio init")), ErrorMsg);
         CleanupDAC();
         return;
     }
@@ -73,7 +74,7 @@ void ASpatialAudioManager::BeginPlay()
     ErrorMsg = {};
     if (!StartStream(ErrorMsg))
     {
-        UE_LOG(LogSpatialAudio, Error, TEXT("Error starting rtAudio stream: %s"), *ErrorMsg);
+        Util::CreateFailNotification(FString(TEXT("RtAudio start")), ErrorMsg);
         CleanupDAC();
         return;
     }
@@ -136,7 +137,7 @@ void ASpatialAudioManager::EndPlay(EEndPlayReason::Type Reason)
     FString ErrorMsg = {};
     if (!EndStream(ErrorMsg))
     {
-        UE_LOG(LogSpatialAudio, Error, TEXT("Error stopping rtAudio stream: %s"), *ErrorMsg);
+        Util::CreateFailNotification(FString(TEXT("RtAudio stop")), ErrorMsg);
     }
     
     if (bFollowListenerRotation)
@@ -340,13 +341,9 @@ bool ASpatialAudioManager::SetupVbap(FString& ErrorMsg)
         Angles[i * 2 + 1] = SpeakerPositions[i].Elevation; // in degrees
     }
     
-    char Error = FSpatialAudioModule::Vbap->Prepare(NumSpeakers, Angles);
-    if (Error != 0)
-    {
-        ErrorMsg = FString::Printf(TEXT("Error Nr %i"), Error);
-    }
+    FSpatialAudioModule::Vbap->Prepare(NumSpeakers, Angles);
     delete[] Angles;
-    return Error == 0;
+    return true;
 }
 
 void ASpatialAudioManager::CleanupVbap()

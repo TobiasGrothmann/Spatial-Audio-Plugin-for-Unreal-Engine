@@ -3,6 +3,7 @@
 #include "AudioPluginUtilities.h"
 #include "Engine/World.h"
 
+#include "SpatialAudio/Util/Public/Util.h"
 #include "SpatialAudio/SpatialAudioManager/Public/SpatialAudioManager.h"
 #include "SpatialAudio/InfoEncodingSpatializer/Public/InfoEncodingSpatializerPluginFactory.h"
 
@@ -56,6 +57,7 @@ void EditorUtil::SetExactlyOneSAManagerInWorld(bool Value)
             {
                 ASpatialAudioManager* SAManager = World->SpawnActor<ASpatialAudioManager>();
                 SAManager->SetFolderPath("#_SpatialAudioManager");
+                Util::CreateSuccessNotification(FString(TEXT("Create SpatialAudioManager")), FString(TEXT("succeeded")));
             }
         }
         else if (SAManagers.Num() > 1)
