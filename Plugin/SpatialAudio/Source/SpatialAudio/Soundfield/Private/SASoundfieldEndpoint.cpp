@@ -50,21 +50,21 @@ void FSASoundfieldEndpoint::OnAudioCallback(TUniquePtr<ISoundfieldAudioPacket>&&
     ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
     if (IsValid(SAManager) && SAManager->bShowDebugSpeakerAmp && InPacketCast.GetBufferLength() > 0)
     {
-        FScopeTryLock DebugAmpLock(&SAManager->DebugSpeakerAmplitudesCriticalSection);
+        TArray<float> GainSums = {};
+        GainSums.SetNumZeroed(SAManager->DebugSpeakerAmplitudes.Num());
         
+        for (const FSpatializedSource& Source : InPacketCast.Sources)
+        {
+            for (const TPair<int32, FInterpolatedGain>& ChanGainPair : Source.Gains)
+            {
+                GainSums[ChanGainPair.Key] += FMath::Max(ChanGainPair.Value.Start, ChanGainPair.Value.End);
+            }
+        }
+        
+        FScopeTryLock DebugAmpLock(&SAManager->DebugSpeakerAmplitudesCriticalSection);
         if (DebugAmpLock.IsLocked())
         {
-            for (int32 c = 0; c < SAManager->DebugSpeakerAmplitudes.Num(); c++)
-            {
-                SAManager->DebugSpeakerAmplitudes[c] = 0.0f;
-            }
-            for (const FSpatializedSource& Source : InPacketCast.Sources)
-            {
-                for (const TPair<int32, FInterpolatedGain>& ChanGainPair : Source.Gains)
-                {
-                    SAManager->DebugSpeakerAmplitudes[ChanGainPair.Key] += ChanGainPair.Value.Lerp(0.5f);
-                }
-            }
+            SAManager->DebugSpeakerAmplitudes = GainSums;
         }
     }
 }
