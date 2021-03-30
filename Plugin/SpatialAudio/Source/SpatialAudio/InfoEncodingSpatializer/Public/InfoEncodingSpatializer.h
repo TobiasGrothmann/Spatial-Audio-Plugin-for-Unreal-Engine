@@ -12,7 +12,7 @@ struct FSpatialzerLocationInfo
         : Yaw(0.0f)
         , Pitch(0.0f)
         , Distance(0.0f)
-        , bInitialized(false) // location info is invalid if it has not been used yet.;
+        , bInitialized(false) // location info is invalid if it has not been used yet
     {}
     
     void Set(float NewYaw, float NewPitch, float NewDistance)

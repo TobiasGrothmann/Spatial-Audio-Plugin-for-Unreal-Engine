@@ -11,6 +11,7 @@
 #include "Widgets/Text/STextBlock.h"
 #include "Widgets/Views/SListView.h"
 #include "Styling/CoreStyle.h"
+#include "Styling/SlateColor.h"
 
 #include "SpatialAudio/SpatialAudioManager/Public/SpatialAudioManager.h"
 #include "SpatialAudio/Data/Public/SpeakerPosition.h"
@@ -445,7 +446,7 @@ TArray<TSharedPtr<FString>> SSpatialAudioSetupTab::GetOutputDeviceOptions()
 FText SSpatialAudioSetupTab::GetAudioOutputDeviceText() const
 {
     ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
-    if (!IsValid(SAManager)) return FText::FromString("------");
+    if (!SAManager) return FText::FromString(FString(TEXT("------")));
     if (SAManager->AudioOutputDeviceName == "") return FText::FromString(DefaultAudioDeviceString);
     return FText::FromString(SAManager->AudioOutputDeviceName);
 }

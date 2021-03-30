@@ -1,7 +1,10 @@
 #include "../Public/SpatialAudioModule.h"
 
 #include "Features/IModularFeatures.h"
+#include "Engine/World.h"
+
 #include "SpatialAudio/Data/Public/SAPacket.h"
+#include "SpatialAudio/SpatialAudioManager/Public/SpatialAudioManager.h"
 
 DEFINE_LOG_CATEGORY(LogSpatialAudio);
 

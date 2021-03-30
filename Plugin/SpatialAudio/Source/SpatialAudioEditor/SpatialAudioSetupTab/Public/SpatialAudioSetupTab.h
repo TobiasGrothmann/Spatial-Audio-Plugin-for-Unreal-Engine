@@ -59,5 +59,5 @@ public:
 
     TArray<TSharedPtr<FString>> GetOutputDeviceOptions();
     TArray<TSharedPtr<FString>> OutputDeviceOptions = {};
-    const FString DefaultAudioDeviceString = "-- default --";
+    const FString DefaultAudioDeviceString = FString(TEXT("-- default --"));
 };

@@ -7,6 +7,7 @@
 
 FString FInfoEncodingSpatializerPluginFactory::GetSpatializerPluginName()
 {
+    // this is the name that is displayed in the project settings when selecting the spatializer plugin for the platform:
     return "Spatial Audio Spatializer";
 }
 
@@ -24,13 +25,3 @@ TAudioSpatializationPtr FInfoEncodingSpatializerPluginFactory::CreateNewSpatiali
 {
     return TAudioSpatializationPtr(new FInfoEncodingSpatialization());
 };
-
-int32 FInfoEncodingSpatializerPluginFactory::GetMaxSupportedChannels()
-{
-    return 128;
-}
-
-//UClass* FInfoEncodingSpatializerPluginFactory::GetCustomSpatializationSettingsClass() const
-//{
-//    return
-//}

@@ -7,6 +7,7 @@
 #include "ToolMenus.h"
 #include "Features/IModularFeatures.h"
 
+#include "SpatialAudio/SpatialAudioManager/Public/SpatialAudioManager.h"
 #include "../SpatialAudioManagerDetails/Public/SpatialAudioManagerDetails.h"
 #include "../Public/SpatialAudioEditorCommands.h"
 #include "../Public/SpatialAudioEditorStyle.h"

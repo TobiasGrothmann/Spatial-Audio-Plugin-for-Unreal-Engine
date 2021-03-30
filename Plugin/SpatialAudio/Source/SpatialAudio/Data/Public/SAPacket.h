@@ -43,6 +43,6 @@ public:
     
     inline int32 GetBufferLength() const;
     
-    
+    // contains the audio buffers mapped to channels with gain values
     TArray<FSpatializedSource> Sources = {};
 };

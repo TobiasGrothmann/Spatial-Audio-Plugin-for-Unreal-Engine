@@ -13,15 +13,25 @@ void FSAEncoder::Encode(const FSoundfieldEncoderInputData& Input, ISoundfieldAud
 
 
 
-
+// encode an audio buffer to a FSAPacket using VBAP
 void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISoundfieldAudioPacket& OutputDataUncast)
 {
+// SETUP
     if (Input.AudioBuffer.Num() == 0) return; // this can happen, unsure of when and why
+    
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    if (!IsValid(SAManager))
+    {
+        UE_LOG(LogSpatialAudio, Error, TEXT("SAManager is invalid."));
+        return;
+    }
     
     FSAPacket& OutPacket = DowncastSoundfieldRef<FSAPacket>(OutputDataUncast);
     
     const FAudioPlatformSettings& Settings = FAudioPlatformSettings::GetPlatformSettings(FPlatformProperties::GetRuntimeSettingsClassName());
     const int32 SingleChannelBufferSize = Settings.CallbackBufferFrameSize;
+    const int32 NumSpeakers = SAManager->GetNumChannels();
+    
     
     const int32 ExpectedExtraSamples = 7;
     
@@ -32,13 +42,6 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
         return;
     }
     
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
-    if (!IsValid(SAManager))
-    {
-        UE_LOG(LogSpatialAudio, Error, TEXT("SAManager is invalid."));
-        return;
-    }
-    const int32 NumSpeakers = SAManager->GetNumChannels();
     
     Audio::AlignedFloatBuffer* OutputAudio = new Audio::AlignedFloatBuffer();
     OutputAudio->SetNum(SingleChannelBufferSize);
@@ -48,6 +51,8 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
         (*OutputAudio)[s] = Input.AudioBuffer[s * Input.NumChannels + OnlyInputChanUsed];
     }
     
+    
+// CHECK IF EXTRA SAMPLES ARE THERE FROM SPATIALIZER
     int32 ExtraSamples = Input.AudioBuffer.Num() - Input.NumChannels * SingleChannelBufferSize;
     if (ExtraSamples == 0) // packet contains no spatial information and is played back on all speakers
     {
@@ -67,6 +72,7 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
         return;
     }
 
+    
 // DECODE SPATIAL INFO
     const float Azi = Input.AudioBuffer[Input.AudioBuffer.Num() - ExtraSamples + 0];
     const float Ele = Input.AudioBuffer[Input.AudioBuffer.Num() - ExtraSamples + 1];
@@ -85,8 +91,9 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
         LastEle = Ele;
         LastDist = Dist;
     }
+    
 
-    // compute gains
+// PERFORM VBAP
     if (FSpatialAudioModule::Vbap == nullptr)
     {
         UE_LOG(LogSpatialAudio, Error, TEXT("Vbap Object is invalid. Cannot compute gains."));
@@ -110,6 +117,8 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
     
     OutPacket.Sources.Add({ MakeShareable(OutputAudio), GainsMap });
     
+    
+// CLEANUP
     delete[] Gains;
     delete[] LastGains;
 }

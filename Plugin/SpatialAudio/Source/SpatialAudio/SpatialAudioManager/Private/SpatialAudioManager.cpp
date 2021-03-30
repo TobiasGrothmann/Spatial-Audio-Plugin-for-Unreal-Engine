@@ -11,6 +11,7 @@ ASpatialAudioManager* ASpatialAudioManager::Instance = nullptr;
 
 
 ASpatialAudioManager::ASpatialAudioManager()
+    : AActor()
 {
     PrimaryActorTick.bCanEverTick = true;
     PrimaryActorTick.SetTickFunctionEnable(true);

@@ -13,8 +13,5 @@ public:
     
     virtual FString GetDisplayName() override;
     virtual bool SupportsPlatform(const FString& PlatformName) override;
-    virtual int32 GetMaxSupportedChannels() override;
-
-//    virtual UClass* GetCustomSpatializationSettingsClass() const override;
-
+    
 };

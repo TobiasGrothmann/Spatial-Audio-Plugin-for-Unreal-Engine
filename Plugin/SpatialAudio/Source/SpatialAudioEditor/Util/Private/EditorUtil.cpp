@@ -54,7 +54,8 @@ void EditorUtil::SetExactlyOneSAManagerInWorld(bool Value)
             UWorld* World = GEditor->GetEditorWorldContext().World();
             if (IsValid(World))
             {
-                World->SpawnActor<ASpatialAudioManager>();
+                ASpatialAudioManager* SAManager = World->SpawnActor<ASpatialAudioManager>();
+                SAManager->SetFolderPath("#_SpatialAudioManager");
             }
         }
         else if (SAManagers.Num() > 1)
