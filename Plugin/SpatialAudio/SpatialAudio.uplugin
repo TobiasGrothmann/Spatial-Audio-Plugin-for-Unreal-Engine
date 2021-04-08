@@ -24,6 +24,11 @@
             "Name": "SpatialAudioEditor",
             "Type": "Editor",
             "LoadingPhase": "PostEngineInit"
+        },
+        {
+            "Name": "SARtAudio",
+            "Type": "Editor",
+            "LoadingPhase": "Default"
         }
 	]
 }

@@ -2,7 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "RtAudio.h"
+#include "SARtAudio/Public/RtAudio.h"
 
 #include "SpatialAudio/Data/Public/SpeakerPosition.h"
 #include "SpatialAudio/Vbap/Public/Vbap.h"

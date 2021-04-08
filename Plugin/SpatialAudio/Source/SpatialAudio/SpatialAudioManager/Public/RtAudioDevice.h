@@ -1,7 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "RtAudio.h"
+#include "SARtAudio/Public/RtAudio.h"
 #include "RtAudioDevice.generated.h"
 
 

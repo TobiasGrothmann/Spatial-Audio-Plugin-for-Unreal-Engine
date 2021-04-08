@@ -11,7 +11,6 @@ public class SpatialAudio : ModuleRules
 		PublicIncludePaths.AddRange(
 			new string[] {
 				// ... add public include paths required here ...
-                "Runtime/AudioCaptureImplementations/AudioCaptureRtAudio/Private",
 			}
 			);
 				
@@ -31,7 +30,7 @@ public class SpatialAudio : ModuleRules
                 "Spatialization",
                 "AudioExtensions",
                 "SignalProcessing",
-                "AudioCaptureRtAudio",
+                "SARtAudio",
                 "AudioCaptureCore",
 				// ... add other public dependencies that you statically link with here ...
 			}
