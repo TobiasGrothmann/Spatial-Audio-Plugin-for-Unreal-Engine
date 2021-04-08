@@ -34,7 +34,7 @@ void FInfoEncodingSpatialization::OnInitSource(const uint32 SourceId, const FNam
 
 void FInfoEncodingSpatialization::OnReleaseSource(const uint32 SourceId)
 {
-    if (!SourceLocationInfo.Contains(SourceId))
+    if (SourceLocationInfo.Contains(SourceId))
     {
         SourceLocationInfo.Remove(SourceId);
     }
