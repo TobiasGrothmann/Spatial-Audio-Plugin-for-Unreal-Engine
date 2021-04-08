@@ -55,9 +55,16 @@
 #if PLATFORM_WINDOWS
 #include "Windows/WindowsHWrapper.h"
 
+/* SA EDIT
 #ifndef __WINDOWS_DS__
 #define __WINDOWS_DS__
 #endif // __WINDOWS_DS__
+*/
+
+// SA EDIT
+#ifndef __WINDOWS_ASIO__
+#define __WINDOWS_ASIO__
+#endif // __WINDOWS_ASIO__
 
 #ifdef __WINDOWS_WASAPI__
 #undef __WINDOWS_WASAPI__
