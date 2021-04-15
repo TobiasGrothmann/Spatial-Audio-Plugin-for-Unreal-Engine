@@ -22,7 +22,10 @@ class SPATIALAUDIO_API ASpatialAudioManager : public AActor
 public:
     
     ASpatialAudioManager();
-    static ASpatialAudioManager* Instance;
+private:
+    static TSoftObjectPtr<ASpatialAudioManager> Instance;
+public:
+    static ASpatialAudioManager* GetInstance();
     
     virtual void BeginPlay() override;
     virtual void Tick(float DeltaTime) override;

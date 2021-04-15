@@ -71,7 +71,7 @@ void FInfoEncodingSpatialization::ProcessAudio(const FAudioPluginSourceInputData
 
 
 // ENCODE INFO
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
     if (!IsValid(SAManager)) return;
     
     const FVector& UsedListenerLocation = SAManager->bFollowListenerLocation ? Params->ListenerPosition : SAManager->SpeakerSetupLocation;

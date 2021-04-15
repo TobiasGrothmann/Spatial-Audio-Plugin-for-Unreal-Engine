@@ -88,7 +88,7 @@ void FSpatialAudioManagerDetails::LoadCsv()
 
 void FSpatialAudioManagerDetails::SetSpeakerPositions(const TArray<FSpeakerPosition>& ParsedPositions)
 {
-    ASpatialAudioManager* SAM = ASpatialAudioManager::Instance;
+    ASpatialAudioManager* SAM = ASpatialAudioManager::GetInstance();
     if (!IsValid(SAM))
     {
         UE_LOG(LogSpatialAudioEditor, Error, TEXT("Spatial Audio Manager is invalid. This should not have happened."));

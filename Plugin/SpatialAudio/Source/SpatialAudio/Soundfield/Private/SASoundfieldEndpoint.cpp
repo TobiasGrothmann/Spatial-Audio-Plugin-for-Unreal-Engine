@@ -47,7 +47,7 @@ void FSASoundfieldEndpoint::OnAudioCallback(TUniquePtr<ISoundfieldAudioPacket>&&
     }
     
     // show gain in debug speakers
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
     if (IsValid(SAManager) && SAManager->bShowDebugSpeakerAmp && InPacketCast.GetBufferLength() > 0)
     {
         TArray<float> GainSums = {};
