@@ -7,7 +7,7 @@
 
 
 
-ASpatialAudioManager* ASpatialAudioManager::Instance = nullptr;
+TSoftObjectPtr<ASpatialAudioManager> ASpatialAudioManager::Instance = nullptr;
 
 
 ASpatialAudioManager::ASpatialAudioManager()
@@ -29,6 +29,15 @@ void ASpatialAudioManager::OnConstruction(const FTransform& Transform)
 
 
 
+
+ASpatialAudioManager* ASpatialAudioManager::GetInstance()
+{
+    if (ASpatialAudioManager::Instance.IsValid())
+    {
+        return ASpatialAudioManager::Instance.Get();
+    }
+    return nullptr;
+}
 
 void ASpatialAudioManager::BeginPlay()
 {
@@ -160,7 +169,8 @@ void ASpatialAudioManager::BeginDestroy()
     TArray<ASpatialAudioManager*> SAManagers = Util::GetObjectsOfClass<ASpatialAudioManager>();
     for (ASpatialAudioManager* SAManager : SAManagers)
     {
-        if (!IsValid(SAManager)) continue;
+		if (!IsValid(SAManager)) continue;
+		if (!IsValid(SAManager->GetWorld())) continue;
         if (SAManager == this) continue;
         if (SAManager->GetWorld()->StreamingLevelsPrefix.Len() != 0) continue; // non empty in PIE and standalone preview
         

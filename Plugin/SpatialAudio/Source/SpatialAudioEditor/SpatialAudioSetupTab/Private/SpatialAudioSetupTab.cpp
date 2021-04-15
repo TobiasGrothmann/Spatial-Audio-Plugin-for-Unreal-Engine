@@ -445,7 +445,7 @@ TArray<TSharedPtr<FString>> SSpatialAudioSetupTab::GetOutputDeviceOptions()
 
 FText SSpatialAudioSetupTab::GetAudioOutputDeviceText() const
 {
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
     if (!SAManager) return FText::FromString(FString(TEXT("------")));
     if (SAManager->AudioOutputDeviceName == "") return FText::FromString(DefaultAudioDeviceString);
     return FText::FromString(SAManager->AudioOutputDeviceName);
@@ -458,7 +458,7 @@ TSharedRef<SWidget> SSpatialAudioSetupTab::OnGenerateAudioDeviceRow(TSharedPtr<F
 
 void SSpatialAudioSetupTab::OnAudioDeviceSelectionChanged(TSharedPtr<FString> InItem, ESelectInfo::Type InSeletionInfo)
 {
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
     if (IsValid(SAManager))
     {
         if (*InItem == DefaultAudioDeviceString)

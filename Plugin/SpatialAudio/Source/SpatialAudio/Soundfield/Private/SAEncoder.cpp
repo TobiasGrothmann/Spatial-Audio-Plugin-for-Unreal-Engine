@@ -19,7 +19,7 @@ void FSAEncoder::EncodeAndMixIn(const FSoundfieldEncoderInputData& Input, ISound
 // SETUP
     if (Input.AudioBuffer.Num() == 0) return; // this can happen, unsure of when and why
     
-    ASpatialAudioManager* SAManager = ASpatialAudioManager::Instance;
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
     if (!IsValid(SAManager))
     {
         UE_LOG(LogSpatialAudio, Error, TEXT("SAManager is invalid."));
