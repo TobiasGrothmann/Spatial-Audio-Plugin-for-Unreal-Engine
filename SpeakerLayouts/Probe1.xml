@@ -1,0 +1,88 @@
+<LoudspeakerSetup name="MUTprobe1_16042018">
+    
+    <SpeakerGroupList>
+            
+        <SpeakerGroup geometryType="Ring" layerId="0" isSubwoofer="false" name="1. Ring">
+            <Speaker x=" -4.9600" y="  4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="1" pitch="  0.00" roll="0.0" heading="317.78"/>
+            <Speaker x=" -2.4700" y="  4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="2" pitch="  0.00" roll="0.0" heading="298.76"/>
+            <Speaker x="  0.0000" y="  4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="3" pitch="  0.00" roll="0.0" heading="270.00"/>
+            <Speaker x="  2.4700" y="  4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="4" pitch="  0.00" roll="0.0" heading="241.24"/>
+            <Speaker x="  4.9600" y="  4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="5" pitch="  0.00" roll="0.0" heading="222.22"/>
+            <Speaker x="  4.9600" y="  2.1600" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="6" pitch="  0.00" roll="0.0" heading="203.53"/>
+            <Speaker x="  4.9600" y="  0.0000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="7" pitch="  0.00" roll="0.0" heading="180.00"/>
+            <Speaker x="  4.9600" y=" -2.2200" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="8" pitch="  0.00" roll="0.0" heading="155.89"/>
+            <Speaker x="  4.9600" y=" -4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="9" pitch="  0.00" roll="0.0" heading="137.78"/>
+            <Speaker x="  2.4700" y=" -4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="10" pitch="  0.00" roll="0.0" heading="118.76"/>
+            <Speaker x="  0.0000" y=" -4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="11" pitch="  0.00" roll="0.0" heading=" 90.00"/>
+            <Speaker x=" -2.4700" y=" -4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="12" pitch="  0.00" roll="0.0" heading=" 61.24"/>
+            <Speaker x=" -4.9600" y=" -4.5000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="13" pitch="  0.00" roll="0.0" heading=" 42.22"/>
+            <Speaker x=" -4.9600" y=" -2.2200" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="14" pitch="  0.00" roll="0.0" heading=" 24.11"/>
+            <Speaker x=" -4.9600" y="  0.0000" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="15" pitch="  0.00" roll="0.0" heading="  0.00"/>
+            <Speaker x=" -4.9600" y="  2.1600" z="  2.5000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="16" pitch="  0.00" roll="0.0" heading="336.47"/>
+        </SpeakerGroup>
+        
+        <SpeakerGroup geometryType="Ring" layerId="1" isSubwoofer="false" name="2. Ring">
+            <Speaker x=" -3.7000" y="  4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="17" pitch="  0.00" roll="0.0" heading="311.18"/>
+            <Speaker x=" -1.4000" y="  4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="18" pitch="  0.00" roll="0.0" heading="288.31"/>
+            <Speaker x="  1.4000" y="  4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="19" pitch="  0.00" roll="0.0" heading="251.69"/>
+            <Speaker x="  3.7000" y="  4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="20" pitch="  0.00" roll="0.0" heading="228.82"/>
+            <Speaker x="  4.6900" y="  3.3600" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="21" pitch="  0.00" roll="0.0" heading="215.62"/>
+            <Speaker x="  4.6900" y="  1.2500" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="22" pitch="  0.00" roll="0.0" heading="194.92"/>
+            <Speaker x="  4.6900" y=" -1.2500" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="23" pitch="  0.00" roll="0.0" heading="165.08"/>
+            <Speaker x="  4.6900" y=" -3.3600" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="24" pitch="  0.00" roll="0.0" heading="144.38"/>
+            <Speaker x="  3.7000" y=" -4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="25" pitch="  0.00" roll="0.0" heading="131.18"/>
+            <Speaker x="  1.4000" y=" -4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="26" pitch="  0.00" roll="0.0" heading="108.31"/>
+            <Speaker x=" -1.4000" y=" -4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="27" pitch="  0.00" roll="0.0" heading=" 71.69"/>
+            <Speaker x=" -3.7000" y=" -4.2300" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="28" pitch="  0.00" roll="0.0" heading=" 48.82"/>
+            <Speaker x=" -4.6900" y=" -3.3600" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="29" pitch="  0.00" roll="0.0" heading=" 35.62"/>
+            <Speaker x=" -4.6900" y=" -1.2500" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="30" pitch="  0.00" roll="0.0" heading=" 14.92"/>
+            <Speaker x=" -4.6900" y="  1.2500" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="31" pitch="  0.00" roll="0.0" heading="345.08"/>
+            <Speaker x=" -4.6900" y="  3.3600" z="  4.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="32" pitch="  0.00" roll="0.0" heading="324.38"/>
+        </SpeakerGroup>
+        
+        <SpeakerGroup geometryType="Surface" layerId="2" isSubwoofer="false" name="3. Ring">
+            <Speaker x=" -2.4700" y="  2.1600" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="33" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x="  0.0000" y="  2.1600" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="34" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x="  2.4700" y="  2.1600" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="35" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x=" -2.4700" y="  0.0000" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="36" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x="  0.0000" y="  0.0000" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="37" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x="  2.4700" y="  0.0000" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="38" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x=" -2.4700" y=" -2.2200" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="39" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x="  0.0000" y=" -2.2200" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="40" pitch="-90.00" roll="0.0" heading="  0.00"/>
+            <Speaker x="  2.4700" y=" -2.2200" z="  4.2000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="41" pitch="-90.00" roll="0.0" heading="  0.00"/>
+        </SpeakerGroup>
+        
+        <!-- <SpeakerGroup geometryType="Arbitrary" isSubwoofer="true" name="LFE">
+            <Speaker x=" -2.8000" y="  4.8000" z="  0.0000" typeId="20c77660-f1d0-11e1-aff1-0800200c9a66" lsNo="42" pitch="  0.00" roll="0.0" heading="270.00"/>
+        </SpeakerGroup> -->
+        
+    </SpeakerGroupList>
+    
+    <AudienceList>
+        <Audience name="DefaultAudience">
+            <Area>
+                <Position x="  4.1000" y="  3.7500" z="  0.0000"/>
+                <Position x="  4.1000" y=" -3.7500" z="  0.0000"/>
+                <Position x=" -4.1000" y=" -3.7500" z="  0.0000"/>
+                <Position x=" -4.1000" y="  3.7500" z="  0.0000"/>
+            </Area>
+            <Center x="  0.0000" y="  0.0000" z="0"/>
+            <ReferencePoint x="  0.0000" y="  0.0000"/>
+            <ReferencedSpeakerGroupList>
+                <ReferencedSpeakerGroup name="1. Ring"/>
+                <ReferencedSpeakerGroup name="2. Ring"/>
+                <ReferencedSpeakerGroup name="3. Ring"/>
+                <ReferencedSpeakerGroup name="LFE"/>
+            </ReferencedSpeakerGroupList>
+        </Audience>
+    </AudienceList>
+    
+    <SceneScaling>
+        <ReferencedAudience name="DefaultAudience"/>
+        <Screen>
+            <Position x=" -2.2500" y="  5.1000" z="  0.0000"/>
+            <Position x="  2.2500" y="  5.1000" z="  0.0000"/>
+        </Screen>
+    </SceneScaling>
+    
+</LoudspeakerSetup>
