@@ -14,7 +14,7 @@ public:
     ~FSAringBuffer();
     
     void Write(const FSAPacket& InPacket);
-    void Read(float* Out, int32 BufferFrames, int32 NumOutChannels);
+    void Read(float* Out, int32 BufferFrames, int32 NumOutChannels, float MasterGain);
     
     FORCEINLINE bool IncrementWriteIndex();
     FORCEINLINE bool IncrementReadIndex();
