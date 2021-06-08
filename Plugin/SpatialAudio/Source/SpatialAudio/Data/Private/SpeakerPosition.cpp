@@ -26,6 +26,7 @@ FVector FSpeakerPosition::GetAsVector(const FRotator& AddRotation) const
 {
     // distance is not used for Vbap atm
     FVector Dir = FRotator(Azimuth, Elevation, 0.0f).Vector();
-    FQuat Rot = FQuat(AddRotation);
-    return Rot.RotateVector(Dir);
+//    FQuat Rot = FQuat(AddRotation);
+//    return Rot.RotateVector(Dir);
+    return Dir;
 }
