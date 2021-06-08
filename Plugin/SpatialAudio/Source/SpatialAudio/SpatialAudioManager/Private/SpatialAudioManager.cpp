@@ -541,7 +541,7 @@ void ASpatialAudioManager::UpdateDebugSpeakerLocation()
             UE_LOG(LogSpatialAudio, Warning, TEXT("Invalid debug speaker at index: %i"), i);
         }
         
-        const FVector& NewLocation = SpeakerSetupLocation + SpeakerPositions[i].GetAsVector(SpeakerSetupRotation) * 100.0f * 5.0f;
+        const FVector& NewLocation = SpeakerSetupLocation + SpeakerPositions[i].GetAsVector(SpeakerSetupRotation);
         
         DebugSpeaker->SetActorLocation(NewLocation);
         DebugSpeaker->SetActorRotation((SpeakerSetupLocation - NewLocation).Rotation());
