@@ -396,7 +396,7 @@ int32 ASpatialAudioManager::OnAudioCallback(void *OutBuffer, void* InBuffer, uin
     float* Out = (float*) OutBuffer;
     const int NumOutChannels = AudioManager->OutputParams.nChannels;
     
-    FSpatialAudioModule::RingBuffer->Read(Out, BufferFrames, NumOutChannels);
+    FSpatialAudioModule::RingBuffer->Read(Out, BufferFrames, NumOutChannels, AudioManager->MasterGain);
     
     return 0;
 }

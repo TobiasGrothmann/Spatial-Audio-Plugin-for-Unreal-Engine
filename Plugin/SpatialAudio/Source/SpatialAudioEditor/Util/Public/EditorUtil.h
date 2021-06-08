@@ -17,4 +17,8 @@ public:
     static bool IsExactlyOneSAManagerInWorld();
     static void SetExactlyOneSAManagerInWorld(bool Value);
     
+	static float GainToDb(float Gain);
+	static float DbToGain(float Db);
+
+    static FString GetFloatAsStringWithPrecision(float Value, int32 Precision);
 };

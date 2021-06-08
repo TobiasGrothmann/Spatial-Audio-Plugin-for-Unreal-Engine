@@ -76,3 +76,29 @@ void EditorUtil::SetExactlyOneSAManagerInWorld(bool Value)
         }
     }
 }
+
+float EditorUtil::GainToDb(float Gain)
+{
+    return 20.0f * FMath::LogX(10, Gain);
+}
+
+float EditorUtil::DbToGain(float Db)
+{
+    return FMath::Pow(10.0f, Db / 20.0f);
+}
+
+FString EditorUtil::GetFloatAsStringWithPrecision(float Value, int32 Precision)
+{
+    float Rounded = FMath::RoundToFloat(Value);
+	if (FMath::Abs(Value - Rounded) < FMath::Pow(10, -1 * Precision))
+	{
+		Value = Rounded;
+	}
+    FNumberFormattingOptions NumberFormat;
+    NumberFormat.MinimumIntegralDigits = 1;
+	NumberFormat.MaximumIntegralDigits = 1000;
+	NumberFormat.MinimumFractionalDigits = Precision;
+	NumberFormat.MaximumFractionalDigits = Precision;
+    NumberFormat.UseGrouping = false;
+	return FText::AsNumber(Value, &NumberFormat).ToString().Replace(TEXT(","), TEXT("."));
+}

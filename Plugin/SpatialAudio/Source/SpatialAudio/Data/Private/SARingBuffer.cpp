@@ -59,10 +59,12 @@ void FSAringBuffer::Write(const FSAPacket& InPacket)
 }
 
 
-void FSAringBuffer::Read(float* Out, int32 ReadBufferFrames, int32 NumOutChannels)
+void FSAringBuffer::Read(float* Out, int32 ReadBufferFrames, int32 NumOutChannels, float MasterGain)
 {
     if (this->BufferSize == 0 || this->NumChannels == 0) return;
     check(NumOutChannels == this->NumChannels);
+
+    MasterGain = FMath::Clamp(MasterGain, 0.0f, 1.0f);
     
     // Output silence if there is not enough to read from the buffer. This will ensure that we buffer a little bit before playing.
     if (GetBufferSizeUsed() < ReadBufferFrames)
@@ -85,7 +87,7 @@ void FSAringBuffer::Read(float* Out, int32 ReadBufferFrames, int32 NumOutChannel
         for (int32 c = 0; c < NumOutChannels; c++)
         {
             const int OutIndex = (s * NumOutChannels) + c;
-            Out[OutIndex] = (*this->ChannelBuffers[c])[ReadIndex.GetValue()];
+            Out[OutIndex] = (*this->ChannelBuffers[c])[ReadIndex.GetValue()] * MasterGain;
         }
     }
 }

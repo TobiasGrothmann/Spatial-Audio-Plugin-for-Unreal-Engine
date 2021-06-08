@@ -12,6 +12,8 @@
 #include "Widgets/Views/SListView.h"
 #include "Styling/CoreStyle.h"
 #include "Styling/SlateColor.h"
+#include "Widgets/Input/SSlider.h"
+#include "SlateFwd.h"
 
 #include "SpatialAudio/SpatialAudioManager/Public/SpatialAudioManager.h"
 #include "SpatialAudio/Data/Public/SpeakerPosition.h"
@@ -148,6 +150,37 @@ void SSpatialAudioSetupTab::Construct(const FArguments& InArgs)
                         + SHorizontalBox::Slot()
                         [ SNew(SSpacer) ]
                     ]
+                    + SVerticalBox::Slot()
+                    .AutoHeight()
+                    [
+                        SNew(SHorizontalBox)
+                        + SHorizontalBox::Slot()
+                        .AutoWidth()
+                        .Padding(5,7,5,5)
+                        [
+                            SNew(STextBlock)
+                            .Text(FText::FromString("Master gain:"))
+                        ]
+                        + SHorizontalBox::Slot()
+                        .Padding(5)
+                        [
+							SNew(SSlider)
+							.Value(this, &SSpatialAudioSetupTab::GetMasterDb)
+							.OnValueChanged(this, &SSpatialAudioSetupTab::OnSetMasterDb)
+							.StepSize(0.1f)
+                            .MinValue(-60.0f)
+                            .MaxValue(0.0f)
+                        ]
+                        + SHorizontalBox::Slot()
+                        .Padding(5)
+                        .AutoWidth()
+                        [
+							SNew(STextBlock)
+                            .Text_Raw(this, &SSpatialAudioSetupTab::GetMasterGainDbString)
+                        ]
+                        + SHorizontalBox::Slot()
+                        [ SNew(SSpacer) ]
+                    ]
                 ]
             ]
             // LIST VIEWS
@@ -236,6 +269,51 @@ void SSpatialAudioSetupTab::OnSpatPluginSetChanged(ECheckBoxState NewState)
 void SSpatialAudioSetupTab::OnSAManagerSetChanged(ECheckBoxState NewState)
 {
     EditorUtil::SetExactlyOneSAManagerInWorld(NewState == ECheckBoxState::Checked);
+}
+
+float SSpatialAudioSetupTab::GetMasterDb() const
+{
+	ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
+	if (IsValid(SAManager))
+	{
+        if (FMath::IsNearlyZero(SAManager->MasterGain)) return -60.0f;
+        return EditorUtil::GainToDb(SAManager->MasterGain);
+	}
+    return 0.0f;
+}
+
+void SSpatialAudioSetupTab::OnSetMasterDb(float NewValueDb)
+{
+    ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
+    if (IsValid(SAManager))
+    {
+        if (FMath::IsNearlyEqual(NewValueDb, -60.0f)) SAManager->MasterGain = 0.0f;
+        else SAManager->MasterGain = EditorUtil::DbToGain(NewValueDb);
+    }
+}
+
+FText SSpatialAudioSetupTab::GetMasterGainDbString() const
+{
+	ASpatialAudioManager* SAManager = ASpatialAudioManager::GetInstance();
+	if (IsValid(SAManager))
+	{
+        FString Gain = EditorUtil::GetFloatAsStringWithPrecision(SAManager->MasterGain, 3);
+        FString Db = {};
+        if (FMath::IsNearlyZero(SAManager->MasterGain))
+        {
+            Db = "-inf";
+        }
+        else
+        {
+            Db = EditorUtil::GetFloatAsStringWithPrecision(EditorUtil::GainToDb(SAManager->MasterGain), 2);
+        }
+
+        return FText::FromString(FString::Printf(TEXT("%s, %s db"),
+            *Gain,
+            *Db
+        ));
+	}
+    return FText::FromString("---");
 }
 
 

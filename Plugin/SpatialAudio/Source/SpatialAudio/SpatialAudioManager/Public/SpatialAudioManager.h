@@ -41,7 +41,10 @@ public:
     
     void SetSpeakerPositions(const TArray<FSpeakerPosition>& NewPositions);
     
-    UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Audio")
+	float MasterGain = 0.5f;
+
+    UPROPERTY(VisibleAnywhere, Category = "Audio")
     FString AudioOutputDeviceName = "";
     
     UPROPERTY(EditAnywhere, Category = "SpeakerTransformMode")

@@ -24,6 +24,10 @@ public:
     
     TSharedPtr<SCheckBox> SAManagerCheckbox = nullptr;
     TSharedPtr<SCheckBox> SSpatPluginCheckBox = nullptr;
+
+    float GetMasterDb() const;
+    void OnSetMasterDb(float NewValue);
+    FText GetMasterGainDbString() const;
     
     // Audio Components
     TSharedPtr<SListView<TSharedPtr<FAudioComponentInfo>>> AudioComponentListView = nullptr;
